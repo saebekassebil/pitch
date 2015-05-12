@@ -21,5 +21,6 @@ Also, you can require only individual methods:
 var pitch = require('pitch/pitch');
 var interval = require('pitch/interval');
 var transpose = require('pitch/transpose');
-transpose(pitch('c2'), interval('M2')) // -> d2
+var str = require('pitch/str');
+str(transpose(pitch('c2'), interval('M2'))) // -> d2
 ```
