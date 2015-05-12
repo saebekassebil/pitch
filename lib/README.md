@@ -6,6 +6,8 @@ This is the actual npm module
 
 Currenly implemented methods (docs cooming soon...):
 
+- interval
+- interval.value
 - note
 - note.accidental
 - note.key
@@ -13,6 +15,5 @@ Currenly implemented methods (docs cooming soon...):
 - note.octave
 - note.str
 - note.transpose
-- interval
 - scale
 - scales

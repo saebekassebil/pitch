@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var pitch = __webpack_require__(9);
+	var pitch = __webpack_require__(10);
 	if(true) module.exports = pitch;
 	else if(typeof(window) !== 'undefined') window.pitch = pitch;
 
@@ -56,9 +56,120 @@
 
 	'use strict';
 
-	var name = __webpack_require__(4);
-	var accidental = __webpack_require__(2);
-	var octave = __webpack_require__(5);
+	var vector = __webpack_require__(16);
+	var k = __webpack_require__(14);
+
+	/*
+	 * interval.value
+	 *
+	 */
+	module.exports = function(coord) {
+	  var without = vector.sub(coord,
+	    vector.mul(k.sharp, Math.floor((coord[1] - 2) / 7) + 1));
+
+	  var i = k.intervalFromFifth[without[1] + 5];
+	  var val = k.stepNumber[i] + (without[0] - k.intervals[i][0]) * 7;
+
+	  return (val > 0) ? val : val - 2;
+	}
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var scientific = __webpack_require__(17);
+	var is = __webpack_require__(13);
+	/*
+	 * pitch
+	 */
+	module.exports = function(value) {
+	  return is.coord(value) ? value : scientific(value);
+	}
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var k = __webpack_require__(14);
+	var accVal = __webpack_require__(15);
+
+	/*
+	 * accidental
+	 */
+	module.exports = function(coord) {
+	  return k.accidentals[accVal(coord) + 2];
+	}
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/*
+	 * key
+	 *
+	 * @returns {Integer} the key number of the note
+	 */
+	module.exports = function(coord) {
+	  return coord[0] * 12 + coord[1] * 7 + 49;
+	}
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var k = __webpack_require__(14);
+	var accVal = __webpack_require__(15);
+
+	/*
+	 * name
+	 *
+	 * @param {Array} the coord
+	 * @return {String} the pitch name of the coord
+	 */
+	module.exports = function(coord) {
+	  return k.fifths[coord[1] + k.A4[1] - accVal(coord) * 7 + 1];
+	}
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var k = __webpack_require__(14);
+	var accVal = __webpack_require__(15);
+	var name = __webpack_require__(5);
+	/*
+	 * octave
+	 */
+	module.exports = function(coord) {
+	  return coord[0] + k.A4[0] - k.notes[name(coord)][0] +
+	      accVal(coord) * 4;
+	}
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var name = __webpack_require__(5);
+	var accidental = __webpack_require__(3);
+	var octave = __webpack_require__(6);
 	/*
 	 * str
 	 *
@@ -70,30 +181,33 @@
 
 
 /***/ },
-/* 2 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var k = __webpack_require__(11);
-	var accVal = __webpack_require__(12);
+	var vector = __webpack_require__(16);
 
 	/*
-	 * accidental
+	 * transpose
+	 *
+	 * @param {Array} the pitch coord
+	 * @param {Array} the interval coord
+	 * @return {Array} the transposed pitch coord
 	 */
-	module.exports = function(coord) {
-	  return k.accidentals[accVal(coord) + 2];
+	module.exports = function(pitch, interval) {
+	  return vector.add(pitch, interval);
 	}
 
 
 /***/ },
-/* 3 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var vector = __webpack_require__(13);
-	var knowledge = __webpack_require__(11);
+	var vector = __webpack_require__(16);
+	var knowledge = __webpack_require__(14);
 	/*
 	 * interval
 	 */
@@ -135,66 +249,39 @@
 
 
 /***/ },
-/* 4 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var k = __webpack_require__(11);
-	var accVal = __webpack_require__(12);
+	function pitch() {
 
-	/*
-	 * name
-	 *
-	 * @param {Array} the coord
-	 * @return {String} the pitch name of the coord
-	 */
-	module.exports = function(coord) {
-	  return k.fifths[coord[1] + k.A4[1] - accVal(coord) * 7 + 1];
 	}
+
+	pitch.note = __webpack_require__(2);
+	pitch.note.accidental = __webpack_require__(3);
+	pitch.note.key = __webpack_require__(4);
+	pitch.note.name = __webpack_require__(5);
+	pitch.note.octave = __webpack_require__(6);
+	pitch.note.str = __webpack_require__(7);
+	pitch.note.transpose = __webpack_require__(8);
+
+	pitch.interval = __webpack_require__(9);
+	pitch.interval.value = __webpack_require__(1);
+
+	pitch.scale = __webpack_require__(11);
+	pitch.scales = __webpack_require__(12);
+
+	module.exports = pitch;
 
 
 /***/ },
-/* 5 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var k = __webpack_require__(11);
-	var accVal = __webpack_require__(12);
-	var name = __webpack_require__(4);
-	/*
-	 * octave
-	 */
-	module.exports = function(coord) {
-	  return coord[0] + k.A4[0] - k.notes[name(coord)][0] +
-	      accVal(coord) * 4;
-	}
-
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var scientific = __webpack_require__(15);
-	var is = __webpack_require__(14);
-	/*
-	 * pitch
-	 */
-	module.exports = function(value) {
-	  return is.coord(value) ? value : scientific(value);
-	}
-
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var transpose = __webpack_require__(10);
+	var transpose = __webpack_require__(8);
 	/*
 	 * scale
 	 *
@@ -210,12 +297,12 @@
 
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var interval = __webpack_require__(3);
+	var interval = __webpack_require__(9);
 	/*
 	 * Basic scales definitions
 	 */
@@ -249,46 +336,23 @@
 
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-
-	module.exports = {
-	  accidental: __webpack_require__(2),
-	  interval: __webpack_require__(3),
-	  name: __webpack_require__(4),
-	  octave: __webpack_require__(5),
-	  pitch: __webpack_require__(6),
-	  scale: __webpack_require__(7),
-	  scales: __webpack_require__(8),
-	  str: __webpack_require__(1),
-	  transpose: __webpack_require__(10)
-	}
-
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var vector = __webpack_require__(13);
-
 	/*
-	 * transpose
+	 * is
 	 *
-	 * @param {Array} the pitch coord
-	 * @param {Array} the interval coord
-	 * @return {Array} the transposed pitch coord
+	 * Test types of things
 	 */
-	module.exports = function(pitch, interval) {
-	  return vector.add(pitch, interval);
+	module.exports = {
+	  str: function(v) { return typeof(v) === 'string'; },
+	  coord: function(v) { return Array.isArray(v) && v.length == 2; }
 	}
 
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Note coordinates [octave, fifth] relative to C
@@ -456,12 +520,12 @@
 
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var k = __webpack_require__(11);
+	var k = __webpack_require__(14);
 
 	/*
 	 * accidentalValue (internal)
@@ -472,7 +536,7 @@
 
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -499,27 +563,11 @@
 
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-	/*
-	 * is
-	 *
-	 * Test types of things
-	 */
-	module.exports = {
-	  str: function(v) { return typeof(v) === 'string'; },
-	  coord: function(v) { return Array.isArray(v) && v.length == 2; }
-	}
-
-
-/***/ },
-/* 15 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var coords = __webpack_require__(17);
-	var accval = __webpack_require__(16);
+	var coords = __webpack_require__(18);
+	var accval = __webpack_require__(19);
 
 	module.exports = function scientific(name) {
 	  var format = /^([a-h])(x|#|bb|b?)(-?\d*)/i;
@@ -543,29 +591,7 @@
 
 
 /***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var accidentalValues = {
-	  'bb': -2,
-	  'b': -1,
-	  '': 0,
-	  '#': 1,
-	  'x': 2
-	};
-
-	module.exports = function accidentalNumber(acc) {
-	  return accidentalValues[acc];
-	}
-
-	module.exports.interval = function accidentalInterval(acc) {
-	  var val = accidentalValues[acc];
-	  return [-4 * val, 7 * val];
-	}
-
-
-/***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// First coord is octaves, second is fifths. Distances are relative to c
@@ -587,6 +613,28 @@
 	module.exports.notes = notes;
 	module.exports.A4 = [3, 3]; // Relative to C0 (scientic notation, ~16.35Hz)
 	module.exports.sharp = [-4, 7];
+
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var accidentalValues = {
+	  'bb': -2,
+	  'b': -1,
+	  '': 0,
+	  '#': 1,
+	  'x': 2
+	};
+
+	module.exports = function accidentalNumber(acc) {
+	  return accidentalValues[acc];
+	}
+
+	module.exports.interval = function accidentalInterval(acc) {
+	  var val = accidentalValues[acc];
+	  return [-4 * val, 7 * val];
+	}
 
 
 /***/ }
