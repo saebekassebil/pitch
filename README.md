@@ -14,8 +14,8 @@ __.name([0, 0]) // -> a
 __.interval('M2') // -> [-1, 2]
 __.transpose([0, 0], [-1, 2]) // -> [-1, 2]
 
-
-__.scale(__.pitch('a2'), __.scales.major).map(__.str) // -> ['c2' 'd2' 'e2' 'f2' 'g2' 'a2' 'b2']
+// Maybe to much for this lib, but it was sooo easy to implement...
+__.scale(__.pitch('c2'), __.scales.major).map(__.str) // -> ['c2' 'd2' 'e2' 'f2' 'g2' 'a2' 'b2']
 ```
 
 Also, you can require only individual methods:
