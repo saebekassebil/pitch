@@ -24,3 +24,10 @@ var transpose = require('pitch/transpose');
 var str = require('pitch/str');
 str(transpose(pitch('c2'), interval('M2'))) // -> d2
 ```
+
+# Build dist file
+
+```bash
+npm install
+webpack index.js dist/pitch.js
+```
