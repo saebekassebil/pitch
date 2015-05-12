@@ -2,14 +2,16 @@
 
 This is the actual npm module
 
-# Methods
+# API
 
 Currenly implemented methods (docs cooming soon...):
 
 - accidental
 - interval
+- key
 - name
 - octave
 - pitch
+- scale
 - str
 - transpose
