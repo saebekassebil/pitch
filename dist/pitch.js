@@ -191,12 +191,24 @@
 	/*
 	 * transpose
 	 *
+	 * Transpose two coords or return a transposer
+	 *
 	 * @param {Array} the pitch coord
 	 * @param {Array} the interval coord
-	 * @return {Array} the transposed pitch coord
+	 * @return {Array|Function} the transposed pitch coord or a transposer
+	 *  if only one coord is provided
+	 *
+	 * @example
+	 * scale(note('c2'), scales.major).map(transpose(interval('M2')));
 	 */
 	module.exports = function(pitch, interval) {
-	  return vector.add(pitch, interval);
+	  if(arguments.length == 2) {
+	    return vector.add(pitch, interval);
+	  } else if (arguments.length == 1) {
+	    return function(coord) {
+	      return vector.add(pitch, coord);
+	    }
+	  }
 	}
 
 
@@ -264,7 +276,8 @@
 	pitch.note.name = __webpack_require__(5);
 	pitch.note.octave = __webpack_require__(6);
 	pitch.note.str = __webpack_require__(7);
-	pitch.note.transpose = __webpack_require__(8);
+
+	pitch.transpose = __webpack_require__(8);
 
 	pitch.interval = __webpack_require__(9);
 	pitch.interval.value = __webpack_require__(1);

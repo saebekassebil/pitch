@@ -2,16 +2,22 @@ vows = require('vows');
 assert = require('assert');
 
 N = require('./notes.json');
-pitch = require('../lib/note.js');
+note = require('../lib/note.js');
 
-vows.describe("pitch method").addBatch({
-  "parse pitch": function() {
-    p = pitch('c2');
-    assert.deepEqual(p, [-1, -3]);
+vows.describe("note method").addBatch({
+  "parse": {
+    "parse note": function() {
+      p = note('c2');
+      assert.deepEqual(p, [-1, -3]);
+    },
+    "parse uppercase note": function() {
+      p = note('C2');
+      assert.deepEqual(p, [-1, -3]);
+    }
   },
   "bypass coord": function() {
-    a = pitch('c2');
-    b = pitch(a);
+    a = note('c2');
+    b = note(a);
     assert(a === b);
   }
 }).export(module);
