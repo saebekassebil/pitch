@@ -2,7 +2,7 @@ vows = require('vows');
 assert = require('assert');
 
 N = require('./notes.json');
-pitch = require('../lib/pitch.js');
+pitch = require('../lib/note.js');
 
 vows.describe("pitch method").addBatch({
   "parse pitch": function() {

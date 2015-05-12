@@ -4,7 +4,7 @@ assert = require('assert');
 N = require('./notes.json');
 scales = require('../lib/scales/basic.js');
 scale = require('../lib/scale.js');
-str = require('../lib/str.js');
+str = require('../lib/note/str.js');
 
 vows.describe("scale method").addBatch({
   "scale": function() {

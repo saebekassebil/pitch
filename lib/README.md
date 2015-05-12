@@ -6,12 +6,13 @@ This is the actual npm module
 
 Currenly implemented methods (docs cooming soon...):
 
-- accidental
+- note
+- note.accidental
+- note.key
+- note.name
+- note.octave
+- note.str
+- note.transpose
 - interval
-- key
-- name
-- octave
-- pitch
 - scale
-- str
-- transpose
+- scales

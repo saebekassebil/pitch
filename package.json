@@ -5,7 +5,7 @@
   "description": "Pitch tools used to test pitch npm module",
   "main": "index.js",
   "scripts": {
-    "test": "vows test/*",
+    "test": "vows test/*.js test/*/*.js",
     "start": "webpack index.js dist/pitch.js"
   },
   "repository": {

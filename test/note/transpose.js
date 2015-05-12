@@ -1,9 +1,9 @@
 vows = require('vows');
 assert = require('assert');
 
-N = require('./notes.json');
-I = require('./intervals.json');
-transpose = require('../lib/transpose.js');
+N = require('../notes.json');
+I = require('../intervals.json');
+transpose = require('../../lib/note/transpose.js');
 
 vows.describe("str method").addBatch({
   "transpose": function() {

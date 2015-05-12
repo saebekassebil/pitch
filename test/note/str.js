@@ -1,8 +1,8 @@
 vows = require('vows');
 assert = require('assert');
 
-N = require('./notes.json');
-str = require('../lib/str.js');
+N = require('../notes.json');
+str = require('../../lib/note/str.js');
 
 vows.describe("str method").addBatch({
   "str": function() {
