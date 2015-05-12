@@ -1,6 +1,7 @@
 vows = require('vows');
 assert = require('assert');
 
+N = require('./notes.json');
 pitch = require('../lib/pitch.js');
 
 vows.describe("pitch method").addBatch({

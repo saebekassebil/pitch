@@ -1,15 +1,13 @@
 vows = require('vows');
 assert = require('assert');
 
-__ = require('../lib');
+N = require('./notes.json');
+I = require('./intervals.json');
 transpose = require('../lib/transpose.js');
 
 vows.describe("str method").addBatch({
   "transpose": function() {
-    c = __.pitch('c2');
-    i = __.interval('M2');
-    d = __.pitch('d2');
-    assert.deepEqual(transpose(c, i), d);
+    assert.deepEqual(transpose(N['c2'], I['M2']), N['d2']);
   }
 
 }).export(module);
