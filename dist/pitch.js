@@ -46,7 +46,8 @@
 
 	'use strict';
 	var pitch = __webpack_require__(8);
-	if(typeof(window) !== 'undefined') window.pitch = pitch;
+	if(true) module.exports = pitch;
+	else if(typeof(window) !== 'undefined') window.pitch = pitch;
 
 
 /***/ },
@@ -55,7 +56,7 @@
 
 	'use strict';
 
-	var vector = __webpack_require__(11);
+	var vector = __webpack_require__(9);
 
 	/*
 	 * transpose
@@ -75,8 +76,8 @@
 
 	'use strict';
 
-	var k = __webpack_require__(9);
-	var accVal = __webpack_require__(10);
+	var k = __webpack_require__(10);
+	var accVal = __webpack_require__(11);
 
 	/*
 	 * accidental
@@ -92,8 +93,8 @@
 
 	'use strict';
 
-	var vector = __webpack_require__(11);
-	var knowledge = __webpack_require__(9);
+	var vector = __webpack_require__(9);
+	var knowledge = __webpack_require__(10);
 	/*
 	 * interval
 	 */
@@ -140,8 +141,8 @@
 
 	'use strict';
 
-	var k = __webpack_require__(9);
-	var accVal = __webpack_require__(10);
+	var k = __webpack_require__(10);
+	var accVal = __webpack_require__(11);
 
 	/*
 	 * name
@@ -160,8 +161,8 @@
 
 	'use strict';
 
-	var k = __webpack_require__(9);
-	var accVal = __webpack_require__(10);
+	var k = __webpack_require__(10);
+	var accVal = __webpack_require__(11);
 	var name = __webpack_require__(4);
 	/*
 	 * octave
@@ -226,6 +227,33 @@
 
 /***/ },
 /* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	module.exports = {
+	  add: function(note, interval) {
+	    return [note[0] + interval[0], note[1] + interval[1]];
+	  },
+
+	  sub: function(note, interval) {
+	    return [note[0] - interval[0], note[1] - interval[1]];
+	  },
+
+	  mul: function(note, interval) {
+	    if (typeof interval === 'number')
+	      return [note[0] * interval, note[1] * interval];
+	    else
+	      return [note[0] * interval[0], note[1] * interval[1]];
+	  },
+
+	  sum: function(coord) {
+	    return coord[0] + coord[1];
+	  }
+	}
+
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Note coordinates [octave, fifth] relative to C
@@ -393,45 +421,18 @@
 
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var k = __webpack_require__(9);
+	var k = __webpack_require__(10);
 
 	/*
 	 * accidentalValue (internal)
 	 */
 	module.exports = function(coord) {
 	  return Math.round((coord[1] + k.A4[1] - 2) / 7);
-	}
-
-
-/***/ },
-/* 11 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	module.exports = {
-	  add: function(note, interval) {
-	    return [note[0] + interval[0], note[1] + interval[1]];
-	  },
-
-	  sub: function(note, interval) {
-	    return [note[0] - interval[0], note[1] - interval[1]];
-	  },
-
-	  mul: function(note, interval) {
-	    if (typeof interval === 'number')
-	      return [note[0] * interval, note[1] * interval];
-	    else
-	      return [note[0] * interval[0], note[1] * interval[1]];
-	  },
-
-	  sum: function(coord) {
-	    return coord[0] + coord[1];
-	  }
 	}
 
 

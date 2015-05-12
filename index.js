@@ -1,3 +1,4 @@
 'use strict';
 var pitch = require('./lib');
-if(typeof(window) !== 'undefined') window.pitch = pitch;
+if(typeof(module) !== 'undefined') module.exports = pitch;
+else if(typeof(window) !== 'undefined') window.pitch = pitch;
