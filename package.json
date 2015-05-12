@@ -1,0 +1,23 @@
+{
+  "name": "pitch-tools",
+  "version": "0.1.0",
+  "description": "Pitch",
+  "main": "index.js",
+  "scripts": {
+    "test": "vows test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danigb/pitch.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danigb/pitch/issues"
+  },
+  "homepage": "https://github.com/danigb/pitch",
+  "devDependencies": {
+    "teoria": "^1.9.0",
+    "vows": "^0.8.1"
+  }
+}
