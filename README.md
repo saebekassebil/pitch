@@ -1,6 +1,6 @@
 # Pitch
 
-This is a idea of how teoria.js can be modularized to a very granular level
+This is an idea of how teoria.js can be modularized to a very granular level. Inspired by a talk with @saebekassebil and the lodash library.
 
 # Usage
 
@@ -26,6 +26,8 @@ str(transpose(pitch('c2'), interval('M2'))) // -> d2
 ```
 
 # Build dist file
+
+Build a web ready distribution:
 
 ```bash
 npm install
