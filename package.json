@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/danigb/pitch",
   "devDependencies": {
+    "node-libs-browser": "^0.5.0",
     "teoria": "^1.9.0",
-    "vows": "^0.8.1"
+    "vows": "^0.8.1",
+    "webpack": "^1.9.4"
   }
 }
