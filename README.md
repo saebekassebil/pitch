@@ -6,16 +6,16 @@ This is an idea of how teoria.js can be modularized to a very granular level. In
 
 ```js
 
-var __ = require('pitch');
-__.note('a4') // -> [0, 0];
-__.note.str([0, 0]) // -> a4
-__.note.name([0, 0]) // -> a
+var p = require('pitch');
+p.note('a4') // -> [0, 0];
+p.note.str([0, 0]) // -> a4
+p.note.name([0, 0]) // -> a
 
-__.interval('M2') // -> [-1, 2]
-__.note.transpose([0, 0], [-1, 2]) // -> [-1, 2]
+p.interval('M2') // -> [-1, 2]
+p.note.transpose([0, 0], [-1, 2]) // -> [-1, 2]
 
 // Maybe to much for this lib, but it was sooo easy to implement...
-__.scale(__.pitch('c2'), __.scales.major).map(__.note.str) // -> ['c2' 'd2' 'e2' 'f2' 'g2' 'a2' 'b2']
+p.scale(p.note('c2'), p.scales.major).map(p.note.str) // -> ['c2' 'd2' 'e2' 'f2' 'g2' 'a2' 'b2']
 ```
 
 Also, you can require the individual methods you need:
