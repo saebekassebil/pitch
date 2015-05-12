@@ -1,6 +1,6 @@
 # Pitch
 
-This is an idea of how teoria.js can be modularized to a very granular level. Inspired by a talk with @saebekassebil and the lodash library.
+This is an idea of how teoria.js can be modularized to a very granular level. Inspired by a [talk](https://github.com/saebekassebil/teoria/issues/78) with [@saebekassebil](https://github.com/saebekassebil) and the lodash library.
 
 # Usage
 
