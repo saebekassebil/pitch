@@ -1,7 +1,7 @@
 # Pitch
 
-Manipulate note pitchs with easy. Uses a two valued coordinated system to
-represent the pitch. Play nicely with [intervalo](github.com/danigb/intervalo)
+Manipulate note pitches with ease. Uses a two valued coordinated system to
+represent the pitch. Play nicely with [intervalo](http://github.com/danigb/intervalo)
 
 ## About
 
@@ -103,7 +103,7 @@ notation.
 
 ### `pitch.transpose([pitch], interval)`
 
-Transpose the a pitch by an interval. Both parameters must be in coord notation. You can use [intervalo](github.com/danigb/intervalo) library.
+Transpose the a pitch by an interval. Both parameters must be in coord notation. You can use [intervalo](http://github.com/danigb/intervalo) library.
 
 If only one interval param is supplied, returns a tranposer: a function that transposes
 certain interval.
