@@ -44,7 +44,7 @@ You can load only the desired method:
 var transpose = require('pitch/transpose');
 ```
 
-### >`pitch.accidental(coord)`
+#### `pitch.accidental(coord)`
 
 Returns the string symbolic of the accidental sign (x, #, b or bb)
 
@@ -52,7 +52,7 @@ Returns the string symbolic of the accidental sign (x, #, b or bb)
 pitch.accidental(pitch('c#2')); // => '#'
 ```
 
-### key(coord) -> {Number}
+#### `pitch.key(coord)`
 
 Returns the piano key number
 
@@ -60,7 +60,7 @@ Returns the piano key number
 pitch.key(pitch('a4')); // => 49
 ```
 
-### letter
+#### `pitch.letter(coord)`
 
 Returns the name of the note, in lowercase letter.
 
@@ -69,7 +69,7 @@ _Note: this method is called `name` in teoria.js_
 pitch.letter(pitch('D#3')); // => 'd'
 ```
 
-### octave
+#### `pitch.octave(coord)`
 
 Returns the numeric value of the octave of the note
 
@@ -77,7 +77,7 @@ Returns the numeric value of the octave of the note
 pitch.octave(pitch('f#5')); // => 5
 ```
 
-### parse
+### `pitch.parse(str | coord)`
 
 Returns the coord of the given string (in scientific notation). If the
 param is an array of two elements, it returns the array
@@ -89,7 +89,9 @@ pitch.parse([ -4, 3 ])  // => [ -4, 3 ]
 
 _Note: `pitch('c#2')` and `pitch.parse('c#2')` are equivalents._
 
-### str | toString
+### `pitch.str(coord)`
+
+__Alias: `pitch.toString(coord)`__
 
 Returns a string representation of the given coordinates in scientific
 notation.
@@ -99,11 +101,11 @@ notation.
   pitch.toString([ -4, 3 ]);   // => 'f#2'
 ```
 
-### transpose
+### `pitch.transpose([pitch], interval)`
 
-Transpose the a pitch by an interval. The intervals are in coord notation (you can use [intervalo](github.com/danigb/intervalo) library.
+Transpose the a pitch by an interval. Both parameters must be in coord notation. You can use [intervalo](github.com/danigb/intervalo) library.
 
-If only one param is supplied, returns a tranposer: a function that transposes
+If only one interval param is supplied, returns a tranposer: a function that transposes
 certain interval.
 
 For example, given a M2 (`[ -1, 2]`) interval:
