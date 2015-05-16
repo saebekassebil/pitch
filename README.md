@@ -44,9 +44,7 @@ You can load only the desired method:
 var transpose = require('pitch/transpose');
 ```
 
-### accidental
-
-`pich.accidental(coord) => {String}`
+### >`pitch.accidental(coord)`
 
 Returns the string symbolic of the accidental sign (x, #, b or bb)
 
