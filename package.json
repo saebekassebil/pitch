@@ -1,6 +1,6 @@
 {
   "name": "pitch-tools",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Pitch tools used to test pitch npm module",
   "main": "index.js",
@@ -23,5 +23,8 @@
     "teoria": "^1.9.0",
     "vows": "^0.8.1",
     "webpack": "^1.9.4"
+  },
+  "dependencies": {
+    "scientific-notation": "^1.0.1"
   }
 }
